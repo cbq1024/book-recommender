@@ -38,3 +38,21 @@ the nvidia info
 |  No running processes found                                                 |
 +-----------------------------------------------------------------------------+
 ```
+
+# export and import anaconda env
+
+- https://docs.anaconda.com/working-with-conda/environments/#sharing-an-environment
+
+## export
+
+```shell
+# Replace <ENV_NAME> with the name of the environment you want exported
+conda activate <ENV_NAME>
+conda env export > environment.yml
+```
+
+## import
+
+```shell
+conda env create -f environment.yml
+```

@@ -14,4 +14,4 @@
 
 - https://recommenders-team.github.io/recommenders/intro.html
 - http://bang.dangdang.com/books/bestsellers/01.00.00.00.00.00-year-2023-0-1-1
-
+- https://docs.anaconda.com/working-with-conda/environments/#sharing-an-environment
