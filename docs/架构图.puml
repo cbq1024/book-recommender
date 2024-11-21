@@ -1,0 +1,53 @@
+@startuml
+actor User
+
+package "Frontend" {
+  [User Interface (React/Vue.js)]
+}
+
+package "Backend" {
+  [API Gateway]
+  [Recommendation Engine]
+  [User Management Service]
+  [Book Data Processing Service]
+  [Feedback Analysis Service]
+}
+
+package "Database" {
+  [PostgreSQL - User Data]
+  [MongoDB - User Behavior Data]
+  [Redis - Recommendation Cache]
+}
+
+package "Messaging" {
+  [Kafka/RabbitMQ]
+}
+
+package "Infrastructure" {
+  [Docker]
+  [Kubernetes]
+  [CI/CD (Jenkins/GitLab CI)]
+}
+
+User --> [User Interface (React/Vue.js)]: "Interacts with"
+[User Interface (React/Vue.js)] --> [API Gateway]: "Send requests to"
+[API Gateway] --> [Recommendation Engine]: "Recommendation requests"
+[API Gateway] --> [User Management Service]: "User data management"
+[API Gateway] --> [Book Data Processing Service]: "Book data requests"
+[API Gateway] --> [Feedback Analysis Service]: "Feedback collection"
+
+[Recommendation Engine] --> [PostgreSQL - User Data]: "Fetch user data"
+[Recommendation Engine] --> [MongoDB - User Behavior Data]: "Fetch behavior data"
+[Recommendation Engine] --> [Redis - Recommendation Cache]: "Fetch cached recommendations"
+
+[Feedback Analysis Service] --> [MongoDB - User Behavior Data]: "Store user feedback"
+
+[Book Data Processing Service] --> [PostgreSQL - User Data]: "Update book data"
+
+[Recommendation Engine] --> [Messaging] : "Publish events"
+[Messaging] --> [Book Data Processing Service]: "Process book data changes"
+
+[Docker] --> [Backend]: "Containerizes services"
+[Kubernetes] --> [Docker]: "Orchestrates containers"
+[CI/CD (Jenkins/GitLab CI)] --> [Backend]: "Deploy services"
+@enduml
